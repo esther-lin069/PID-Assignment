@@ -15,5 +15,7 @@
     "Toggle navigation": "縮放導覽工具",
     "Register": "註冊",
     "Name": "姓名",
-    "Logout": "登出"
+    "Logout": "登出",
+    "Phone":"電話",
+    "Address":"地址"
 }
