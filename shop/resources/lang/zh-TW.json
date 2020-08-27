@@ -17,5 +17,14 @@
     "Name": "姓名",
     "Logout": "登出",
     "Phone":"電話",
-    "Address":"地址"
+    "Address":"地址",
+    "Id": "編號",
+    "Title": "商品名稱",
+    "Description": "商品說明",
+    "Image": "商品圖片",
+    "On sale": "是否上架",
+    "Price": "售價",
+    "Created at": "建立時間",
+    "Updated at": "更新時間",
+    "Product": "商品"
 }
