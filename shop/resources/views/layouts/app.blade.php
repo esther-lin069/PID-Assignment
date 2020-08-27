@@ -18,11 +18,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <!-- nav -->
         @include('layouts.nav')
+        @include('layouts.hero')
         <main class="py-4">
             <div class="container">
             @yield('content')
