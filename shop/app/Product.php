@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
-    public function getImageUrlAttribute()
-    {
-        return Storage::disk('public')->url($this->attributes['image']);
-    }
+    // public function getImageUrlAttribute()
+    // {
+    //     return Storage::disk('public')->url($this->attributes['image']);
+    // }
 }

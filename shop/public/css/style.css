@@ -7,4 +7,12 @@
   height: 35vh;
 }
 
+.product_item #price {
+  font-size: 1.6em;
+  font-weight: 200;
+}
+.product_item .btn {
+  margin-left: 10px;
+}
+
 /*# sourceMappingURL=style.css.map */
