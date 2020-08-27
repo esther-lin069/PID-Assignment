@@ -16,7 +16,7 @@ class ProductController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Product';
+    protected $title = '商品';
 
     /**
      * Make a grid builder.
@@ -76,6 +76,7 @@ class ProductController extends AdminController
         $states = [
             'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],
             'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
+
         ];
         $form->switch('on_sale', __('On sale'))->states($states)->default(1);
         $form->number('price', __('Price'))->default(0)->rules('required|integer|min:0');
@@ -87,7 +88,7 @@ class ProductController extends AdminController
     {
         return $content
             ->header('商品管理')
-            ->description('管理所有賣場商品')
+            ->description('賣場商品管理')
             ->body($this->grid());
     }
 }
