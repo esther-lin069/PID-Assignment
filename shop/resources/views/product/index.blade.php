@@ -5,9 +5,16 @@
     <div class="card-deck">
         @forelse($products as $product)
             <div class="card mb-4 product_item">
+                <!-- 點擊連結或圖片進入商品詳情 -->
+                <a href="product/{{ $product->id }}">
                 <img src="storage/{{ $product->image }}" class="card-img-top" alt="{{ $product->title }}">
+                </a>
+
                 <div class="card-body">
-                    <h5 class="card-title">{{ $product->title }}</h5>
+                    <!-- 點擊連結或圖片進入商品詳情 -->
+                    <h5>
+                        <a href="product/{{ $product->id }}">{{ $product->title }}</a>
+                    </h5>
                 </div>
                 <div class="card-footer text-center">
                     <span id="price">${{ $product->price }}</span>
