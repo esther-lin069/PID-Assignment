@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Exceptions\CustomException;
 
 class ProductController extends Controller
 {
@@ -48,6 +49,13 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+
+        //error when product not on sale
+        if(!$product->on_sale){
+            $exp = new CustomException('商品未上架！');
+            throw $exp;
+        }
+
         return view('product.show', compact('product'));
     }
 

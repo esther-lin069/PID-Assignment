@@ -3,6 +3,7 @@
 
     <h1>商品一覽</h1>
     <div class="card-deck">
+        {{-- 使用@forelse先判斷內容是否有值，若無則從＠empty往下執行 --}}
         @forelse($products as $product)
             <div class="card mb-4 product_item">
                 <!-- 點擊連結或圖片進入商品詳情 -->
@@ -21,6 +22,7 @@
                     <a href="#" class="btn btn-primary">加入購物車</a>
                 </div>
             </div>
+            {{-- 根據windows-size新增一個用來換行的隱藏div --}}
             @if($loop->iteration % 2 == 0)
                 <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
             @endif
