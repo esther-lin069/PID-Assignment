@@ -17,7 +17,7 @@ Route::get('/', 'ProductController@index')->name('index');
 Route::get('/product', 'ProductController@index')->name('product.index');
 Route::get('/product/{id}', 'ProductController@show')->name('product.show');
 
-Route::get('/add_cart', 'CartController@index')->name('cart.add');
+Route::get('/add_cart/{id}/{amount}', 'CartController@addCookies')->name('cart.add');
 
 Auth::routes();
 

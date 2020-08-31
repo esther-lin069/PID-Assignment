@@ -13,12 +13,28 @@ class CartController extends Controller
         
     }
 
+    //still bug here
     public function addCookies(Request $request, $id, $amount=10){
-        $cart_item = ['item' => 1, 'amount' => 10];
-        var_dump(json_decode($request->cookie('cart'),true));
-
         $cart_value = json_decode($request->cookie('cart'),true);
-        $cart_value[] = $cart_item;
+        print_r($cart_value);
+        $cart_item = [$id  => intval($amount)];    
+        
+
+        if(!empty($cart_value)){
+           
+            if(array_key_exists($id, $cart_value)){
+                unset($cart_value[$id]);
+            }
+            else{
+                $cart_value[] = $cart_item;
+            }   
+        }        
+        else{
+            $cart_value[] = $cart_item;
+        }
+        
         return response('add to cart_cookies')->cookie('cart', json_encode($cart_value), time()+3600);
     }
+
+    
 }
