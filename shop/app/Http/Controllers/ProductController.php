@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Exceptions\CustomException;
+use CartController;
 
 class ProductController extends Controller
 {
