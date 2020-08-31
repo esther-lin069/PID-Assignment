@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-footer text-center">
                     <span id="price">${{ $product->price }}</span><br>
-                    <a id="btn_add_cart" data-id="{{ $product->id }}" class="btn btn-primary">加入購物車</a>
+                    <a data-id="{{ $product->id }}" class="btn btn-primary btn_add_cart">加入購物車</a>
                     <input type="hidden" name="amount" value="1" >
                 </div>
             </div>
@@ -56,11 +56,7 @@
 
 
 @section('scriptsAfterJs')
-    <script>
-        $(document).ready(function () {
-            @include('product.add_cart')
-        });
-    </script>
+    @include('product.add_cart')
 @endsection
 
 

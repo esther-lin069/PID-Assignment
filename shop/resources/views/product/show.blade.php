@@ -20,7 +20,7 @@
                             <span class="input-group-text">件</span>
                         </div>
                         <div class="input-group-append">
-                            <button data-id="{{ $product->id }}" class="btn btn-primary btn-add-to-cart">加入購物車</button>
+                            <button data-id="{{ $product->id }}" class="btn btn-primary btn_add_cart">加入購物車</button>
                         </div>
                     </div>
                     <!-- 防止ckedit的html語法失效 -->                        
@@ -33,9 +33,5 @@
 @endsection
 
 @section('scriptsAfterJs')
-    <script>
-        $(document).ready(function () {
-            @include('product.add_cart')
-        });
-    </script>
+    @include('product.add_cart')
 @endsection
