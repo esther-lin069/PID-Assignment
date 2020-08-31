@@ -7,7 +7,7 @@
             <div class="card mb-4 product_item">
                 <!-- 點擊連結或圖片進入商品詳情 -->
                 <a href="product/{{ $product->id }}">
-                <img src="storage/{{ $product->image }}" class="card-img-top" alt="{{ $product->title }}">
+                <img src="{{ $product->image_url }}" class="card-img-top" alt="{{ $product->title }}">
                 </a>
 
                 <div class="card-body">

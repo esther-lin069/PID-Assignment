@@ -6,7 +6,7 @@
         <div class="card-body product-info">
             <div class="row">
                 <div class="col-sm-5">
-                    <img class="img-fluid" src="storage/{{ $product->image }}" alt="{{ $product->title }}">
+                    <img class="img-fluid" src="{{ $product->image_url }}" alt="{{ $product->title }}">
                 </div>
                 <div class="col-sm-7">
                     <div class="h2">{{ $product->title }}</div>
