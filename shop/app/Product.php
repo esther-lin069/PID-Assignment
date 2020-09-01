@@ -12,4 +12,9 @@ class Product extends Model
     {
         return ('/storage/'.$this->image);
     }
+
+    public function carts()
+    {
+        return $this->hasMany('App\Cart');
+    }
 }
