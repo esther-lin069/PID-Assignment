@@ -12,7 +12,9 @@ $(function(){
         }).then(function(){
             swal('加入購物車成功', '','success');
         }).catch(function(error){
-            @auth
+            @auth //登入時 (給blade用的語法)
+
+            //承接CartRequest拋出的錯誤訊息，422為laravel端的錯誤代碼
             if (error.response.status === 422) {
                 var errors = JSON.stringify(error.response.data.errors);
                 errors = JSON.parse(errors);
@@ -29,7 +31,7 @@ $(function(){
             }
             @endauth
 
-            @guest
+            @guest //未登入
                 swal('請先登入');
             @endguest
 
