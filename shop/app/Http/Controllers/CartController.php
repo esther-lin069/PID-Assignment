@@ -2,39 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use Illuminate\Http\Request;
-use App\Product;
 
 class CartController extends Controller
 {
-    public function index(Request $request){
-        
-
-        
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
-    //still bug here
-    public function addCookies(Request $request, $id, $amount=10){
-        $cart_value = json_decode($request->cookie('cart'),true);
-        print_r($cart_value);
-        $cart_item = [$id  => intval($amount)];    
-        
-
-        if(!empty($cart_value)){
-           
-            if(array_key_exists($id, $cart_value)){
-                unset($cart_value[$id]);
-            }
-            else{
-                $cart_value[] = $cart_item;
-            }   
-        }        
-        else{
-            $cart_value[] = $cart_item;
-        }
-        
-        return response('add to cart_cookies')->cookie('cart', json_encode($cart_value), time()+3600);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
-    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Cart  $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Cart $cart)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Cart  $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Cart $cart)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Cart  $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Cart $cart)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Cart  $cart
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Cart $cart)
+    {
+        //
+    }
 }
