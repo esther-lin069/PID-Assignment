@@ -6,6 +6,7 @@ use App\Cart;
 use Illuminate\Http\Request;
 use App\Http\Requests\CartRequest;
 
+
 class CartController extends Controller
 {
     /**
@@ -36,8 +37,8 @@ class CartController extends Controller
      */
     public function store(CartRequest $request)
     {
-        Cart::create($request->all());
-        return redirect()->route('cart.index');
+        // Cart::create($request->all());
+        // return redirect()->route('cart.index');
         
         // $cart = new Cart;
         // $cart->user_id = $request->user()->id;
@@ -45,6 +46,12 @@ class CartController extends Controller
         // $cart->amount = $request->amount;
 
         // $cart->save();
+
+        Cart::create([
+            'user_id'    => $request->user()->id,
+            'product_id' => $request->product_id,
+            'amount'     => $request->amount,
+        ]);
 
         return [];
     }
