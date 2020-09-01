@@ -6,7 +6,7 @@ $(function(){
         $id = $(this).data("id");
         $amount = $("input[name=amount]").val();
         
-        axios.post('/cart',{
+        axios.post('/cart/store',{
             product_id: $id,
             amount: $amount,
         }).then(function(){
