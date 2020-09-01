@@ -18,8 +18,9 @@
                     </h5>
                 </div>
                 <div class="card-footer text-center">
-                    <span id="price">${{ $product->price }}</span>
-                    <a href="#" class="btn btn-primary">加入購物車</a>
+                    <span id="price">${{ $product->price }}</span><br>
+                    <a data-id="{{ $product->id }}" class="btn btn-primary btn_add_cart">加入購物車</a>
+                    <input type="hidden" name="amount" value="1" >
                 </div>
             </div>
             {{-- 根據windows-size新增一個用來換行的隱藏div --}}
@@ -52,3 +53,10 @@
     </li>
     @parent
 @stop
+
+
+@section('scriptsAfterJs')
+    @include('product.add_cart')
+@endsection
+
+

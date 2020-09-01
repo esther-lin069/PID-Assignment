@@ -35,4 +35,5 @@
         </main>
     </div>
 </body>
+@yield('scriptsAfterJs')
 </html>
