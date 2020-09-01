@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
 use App\Product;
 
-class CartController extends Controller
+class CookiesController extends Controller
 {
     public function index(Request $request){
         
