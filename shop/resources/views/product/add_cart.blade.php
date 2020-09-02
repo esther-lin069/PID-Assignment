@@ -61,6 +61,12 @@ $(function(){
             
         });
     })
+
+    $(".amount").change(function(){
+        var cartid = $(this).data('cartid');
+        var sum = $(this).val() * $("#price-" +cartid).text();
+        $("#sum-"+cartid).text(sum);
+    })
 })
 
 

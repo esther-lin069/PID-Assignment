@@ -18,13 +18,22 @@
                 </td>
                 <td>
                     <a target="_blank" href="/product/{{ $cart->product_id }}"><h5>{{ $cart->product->title }}</h5></a>
-                    @if(!$cart->product->on_sale)
+                    @if($cart->product->on_sale)
+                        <input type="number" min="1" class="form-control text-center amount" 
+                        name="amount[{{ $cart->product_id }}]" value="{{ $cart->amount }}" data-cartid="{{ $cart->id }}">
+                    @else
                         <div class="warning">該商品已下架</div>
                     @endif
                 </td>
-                <td class="text-right">{{ $cart->product->price }}</td>
-                <td class="text-center">{{ $cart->amount }}</td>
-                <td class="text-right">{{ $cart->product->price * $cart->amount }}</td>
+                <td class="text-right">
+                    <span id="price-{{ $cart->id }}">
+                    {{ $cart->product->price }}
+                    </span>
+                </td>
+                {{-- <td class="text-center">{{ $cart->amount }}</td> --}}
+                <td class="text-right">
+                    <span class="sum" id="sum-{{ $cart->id }}">{{ $cart->product->price * $cart->amount }}</span>
+                </td>
                 <td nowrap><a href="#" data-id="{{ $cart->product_id }}" class="btn btn-danger btn-sm btn-del-cart-item">移除</a></td>
             </tr>
         @empty
