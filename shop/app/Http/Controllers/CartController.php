@@ -14,9 +14,13 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {   //只傳送購物車的資料會讓該頁沒辦法得到其他使用者的資訊（購物車裡沒有的）
+        //所以這裡只要傳送使用者資料就好，再由關聯去抓取他的購物車內容
+        $user = $request->user();
+        return view('cart.index',compact('user'));
+        // $carts = $request->user()->carts()->get();
+        // return view('cart.index',compact('carts'));
     }
 
     /**
@@ -36,8 +40,17 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CartRequest $request)
-    {
-        Cart::create($request->all());
+    {   
+        //使用者的Cart(所有內容)中搜尋到第一筆重複的資料
+        if ($cart = $request->user()->carts()->where('product_id', $request->product_id)->first()) {
+            $cart->update([
+                'amount' => $cart->amount + $request->amount,
+            ]);
+        }
+        else{
+            Cart::create($request->all());
+        }
+        
         // return redirect()->route('cart.index');
         
         // $cart = new Cart;

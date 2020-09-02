@@ -49,7 +49,7 @@
 
 @section('my_menu')
     <li class="nav-item">
-        <a class="nav-link" href="/home">回控制台</a>
+        <a class="nav-link" href="/admin">回控制台</a>
     </li>
     @parent
 @stop
