@@ -37,7 +37,7 @@ class CartController extends Controller
      */
     public function store(CartRequest $request)
     {
-        // Cart::create($request->all());
+        Cart::create($request->all());
         // return redirect()->route('cart.index');
         
         // $cart = new Cart;
@@ -47,11 +47,11 @@ class CartController extends Controller
 
         // $cart->save();
 
-        Cart::create([
-            'user_id'    => $request->user()->id,
-            'product_id' => $request->product_id,
-            'amount'     => $request->amount,
-        ]);
+        // Cart::create([
+        //     'user_id'    => $request->user()->id,
+        //     'product_id' => $request->product_id,
+        //     'amount'     => $request->amount,
+        // ]);
 
         return [];
     }
