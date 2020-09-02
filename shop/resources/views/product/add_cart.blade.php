@@ -40,6 +40,27 @@ $(function(){
 
         
     })
+
+    $(".btn-del-cart-item").click(function(){
+        var product_id = $(this).data('id');
+        swal({
+            title: "要把我丟出購物車嗎｡ﾟヽ(ﾟ´Д`)ﾉﾟ｡",
+            icon: "warning",
+            buttons: ['沒事按錯了','確定'],
+            dangerMode: true,
+        }).then((willDelete)=>{
+            if(willDelete){
+                axios.delete('/cart/' + product_id)
+                .then(function(){
+                    location.reload();
+                })
+            }
+            else{
+                return;
+            }
+            
+        });
+    })
 })
 
 

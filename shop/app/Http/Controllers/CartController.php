@@ -109,8 +109,9 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($id, Request $request) //注意這裡從網頁傳來的使用者關聯可以抓到購物車的資料，不用特別去抓user id
     {
-        //
+        $request->user()->carts()->where('product_id',$id)->delete();
+        return [];
     }
 }

@@ -25,7 +25,7 @@
                 <td class="text-right">{{ $cart->product->price }}</td>
                 <td class="text-center">{{ $cart->amount }}</td>
                 <td class="text-right">{{ $cart->product->price * $cart->amount }}</td>
-                <td nowrap><a href="#" class="btn btn-danger btn-sm">移除</a></td>
+                <td nowrap><a href="#" data-id="{{ $cart->product_id }}" class="btn btn-danger btn-sm btn-del-cart-item">移除</a></td>
             </tr>
         @empty
 
