@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Product;
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 
@@ -26,20 +27,27 @@ class CartRequest extends FormRequest
     public function rules()
      {
          return [
-             'product_id' => [
-                 'required',
-                 function ($attribute, $value, $fail) {
-                     if (!$product = Product::find($value)) {
+            'user_id' =>[
+                function ($attribute, $value, $fail) {
+                    if(!user()->verify){
+                        return $fail('您沒有購買權限');
+                    }
+                }
+            ],
+            'product_id' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (!$product = Product::find($value)) {
                         return $fail('該商品不存在');
                          
-                     }
-                     if (!$product->on_sale) {
+                    }
+                    if (!$product->on_sale) {
                         return $fail('該商品未上架');
                          
-                     }
-                 },
-             ],
-             'amount'     => ['required', 'integer', 'min:1'],
+                    }
+                },
+            ],
+            'amount' => ['required', 'integer', 'min:1'],
          ];
      }
 
