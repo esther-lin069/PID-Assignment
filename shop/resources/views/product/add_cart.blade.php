@@ -66,6 +66,13 @@ $(function(){
         var cartid = $(this).data('cartid');
         var sum = $(this).val() * $("#price-" +cartid).text();
         $("#sum-"+cartid).text(sum);
+
+        //total
+        var total = 0;
+        $(".sum").each(function(){
+            total += Number($(this).text());
+        });
+        $("#total").text(total);
     })
 })
 
