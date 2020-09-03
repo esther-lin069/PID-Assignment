@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <h1>我的購物車</h1>
-    <table class="table table-striped">
-        <tr>
+    <table class="table table-hover">
+        <tr class="table-active">
             <th colspan=2>商品名稱</th>
             <th nowrap class="text-right">商品單價</th>
             <th nowrap class="text-center">購買數量</th>
@@ -52,7 +52,7 @@
         </tr>
     @endforelse
     <!-- 加入小計欄位th -->
-    <tr>
+    <tr class="table-active">
         <th colspan=4 nowrap class="text-right">總計：</th>
         <th nowrap class="text-right">
             <span id="total">{{ $total }}</span>
