@@ -20,7 +20,7 @@
                 </div>
                 <div class="card-footer text-center">
                     <span id="price">${{ $product->price }}</span><br>
-                    <a data-id="{{ $product->id }}" class="btn btn-primary btn_add_cart">加入購物車</a>
+                    <a data-id="{{ $product->id }}" class="btn btn-info btn_add_cart">加入購物車</a>
                     <input type="hidden" name="amount" value="1" >
                 </div>
             </div>
@@ -49,10 +49,11 @@
 @endsection
 
 @section('my_menu')
+    @parent
     <li class="nav-item">
         <a class="nav-link" href="/admin">回控制台</a>
     </li>
-    @parent
+    
 @stop
 
 

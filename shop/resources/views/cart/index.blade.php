@@ -53,7 +53,11 @@
             @empty
 
             <tr>
-                <td><h3>購物車是空的(´⊙ω⊙`)還不快去買東西！</h3></td>
+                <td colspan="6">
+                    <div class="alert alert-info text-center">
+                        <h2>購物車是空的(´⊙ω⊙`)還不快去買東西！</h2>
+                    </div>
+                </td>
             </tr>
         @endforelse
         <!-- 加入小計欄位th -->
