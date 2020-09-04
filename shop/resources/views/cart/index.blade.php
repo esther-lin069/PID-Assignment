@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <h1>我的購物車</h1>
+    <h2 class="title">購物車列表</h2>
+    <div style="height: 40px"></div>
     <table class="table table-hover">
         <tr class="table-active">
             <th colspan=2>商品名稱</th>

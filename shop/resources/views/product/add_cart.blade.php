@@ -27,7 +27,7 @@ $(function(){
                 swal(String(error), '', 'error');
             }
             else if(error.response.status === 403){
-                swal('您沒有購物權限', '', 'error');
+                swal('您沒有購物權限','','info');
             } 
             else if(error.response.status === 500) {
                 swal('系統錯誤', '', 'error');

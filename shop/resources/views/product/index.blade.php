@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>商品一覽</h1>
+    <h1 class="title">商品一覽</h1>
+    <div style="height: 40px"></div>
     <div class="card-deck">
         {{-- 使用@forelse先判斷內容是否有值，若無則從＠empty往下執行 --}}
         @forelse($products as $product)
