@@ -19,7 +19,7 @@ class OrderController extends Controller
     {
         //排序失敗，同志仍需努力
         $orders = $request->user()->orders->sortByDesc('create_at');
-
+        //dd($request->user());
         return view('order.index', compact('orders'));
     }
 
