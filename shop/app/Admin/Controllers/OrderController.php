@@ -40,8 +40,8 @@ class OrderController extends AdminController
 
             return '待處理';
         });
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('created_at', __('Created at'))->sortable();
+        $grid->column('updated_at', __('Updated at'))->sortable();
 
         return $grid;
     }

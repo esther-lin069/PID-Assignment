@@ -2,7 +2,7 @@
 @section('content')
     <h2 class="title">訂單列表</h2>
     <div style="height: 40px"></div>
-    @forelse ($user->orders as $order)
+    @forelse ($orders as $order)
     <div class="card @if($order->closed) border-secondary @else border-info @endif mb-3">
         <div class="card-header text-white @if($order->closed) bg-secondary @else bg-info @endif">
             訂單日期：{{ $order->created_at}}
@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">訂購人： {{ $user->name }}</li>
+                <li class="list-group-item">訂購人： {{ Auth::user()->name }}</li>
                 <li class="list-group-item">運送地址： {{ $order->address }}</li>
                 <li class="list-group-item">訂單總計： {{ $order->total }} 元</li>
                 <li class="list-group-item float-right">訂單明細： <button type="button" class="btn btn-secondary btn_detail">點我</button></li>

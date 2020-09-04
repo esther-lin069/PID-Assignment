@@ -17,9 +17,10 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user();
+        //排序失敗，同志仍需努力
+        $orders = $request->user()->orders->sortByDesc('create_at');
 
-        return view('order.index', compact('user'));
+        return view('order.index', compact('orders'));
     }
 
     /**
