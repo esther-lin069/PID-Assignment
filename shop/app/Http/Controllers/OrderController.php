@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\OrderDetail;
+use App\Product;
+use DB;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,9 +15,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+
+        return view('order.index', compact('user'));
     }
 
     /**
@@ -35,7 +40,43 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = $request->user();
+
+        DB::transaction(function () use ($user, $request){
+            
+            $order = new Order;
+            $order->user_id = $user->id;
+            $order->address = $request->address;
+            $order->total = 0; //暫時存著，下一步會修改
+            $order->closed = 0;
+            
+            $order->save();       
+
+            $total = 0;
+
+            //利用blade傳來的name = amount[id]表單接收request資料
+            foreach($request->amount as $product_id => $amount){
+                $product = Product::find($product_id); //取得商品資料
+                $item = new OrderDetail;
+                $item->order_id = $order->id;
+                $item->product_id = $product_id;
+                $item->amount = $amount;
+                $item->price = $product->price;
+
+                $item->save();
+                $total += $product->price * $amount;
+            }
+
+            //更新訂單總額
+            $order->total = $total;
+            $order->update();
+
+            //清空購物車
+            $user->carts()->delete();
+
+        });
+
+        return redirect()->route('order.index');
     }
 
     /**
