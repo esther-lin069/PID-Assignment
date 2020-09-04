@@ -19,8 +19,9 @@ class CartController extends Controller
     {   //只傳送購物車的資料會讓該頁沒辦法得到其他使用者的資訊（購物車裡沒有的）
         //所以這裡只要傳送使用者資料就好，再由關聯去抓取他的購物車內容
         $user = $request->user();
+        //進入購物車前驗證權限
         if(!$user->verify){
-            throw new CustomException('您沒有購買權限');
+            throw new CustomException('您沒有購物權限');
         }
         return view('cart.index',compact('user'));
         // $carts = $request->user()->carts()->get();

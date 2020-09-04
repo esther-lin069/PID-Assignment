@@ -25,6 +25,9 @@ $(function(){
                 console.log(error);
 
                 swal(String(error), '', 'error');
+            }
+            else if(error.response.status === 403){
+                swal('您沒有購物權限', '', 'error');
             } 
             else if(error.response.status === 500) {
                 swal('系統錯誤', '', 'error');

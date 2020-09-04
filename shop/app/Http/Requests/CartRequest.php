@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Product;
-use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 
@@ -15,8 +15,14 @@ class CartRequest extends FormRequest
      * @return bool
      */
     public function authorize()
-    {
+    {   
+        //放入購物車時驗證權限 無則發送403
+        $v = Auth::user()->verify;
+        if(!$v){
+            return false;
+        }
         return true;
+        
     }
 
     /**
@@ -24,16 +30,8 @@ class CartRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-     {
+    public function rules(){
          return [
-            'user_id' =>[
-                function ($attribute, $value, $fail) {
-                    if(!user()->verify){
-                        return $fail('您沒有購買權限');
-                    }
-                }
-            ],
             'product_id' => [
                 'required',
                 function ($attribute, $value, $fail) {
@@ -48,21 +46,8 @@ class CartRequest extends FormRequest
                 },
             ],
             'amount' => ['required', 'integer', 'min:1'],
-         ];
-     }
+        ];
+    }
 
-     public function attributes()
-     {
-         return [
-             'amount' => '商品數量',
-         ];
-     }
-
-     public function messages()
-     {
-         return [
-             'required' => '請選擇商品',
-             'min'      => '「:attribute」至少要 :min 個',
-         ];
-     }
+    
 }
