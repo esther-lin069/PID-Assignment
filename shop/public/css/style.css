@@ -26,7 +26,12 @@
 }
 
 .pro-card {
+  position: relative;
   max-width: 18vh;
+}
+
+.pro-title {
+  max-height: 12vh;
 }
 
 /*# sourceMappingURL=style.css.map */
