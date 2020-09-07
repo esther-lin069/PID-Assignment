@@ -12,7 +12,8 @@
 .product_item{
     #price{
         font-size: 1.6em;
-        font-weight: 200;
+        font-weight: 1000;
+        //text-align: center;
     }
 
     .btn{
@@ -28,4 +29,8 @@
 
 .title{
     text-align: center;
+}
+
+.pro-card{
+    max-width: 18vh;
 }

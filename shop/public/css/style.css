@@ -9,7 +9,7 @@
 
 .product_item #price {
   font-size: 1.6em;
-  font-weight: 200;
+  font-weight: 1000;
 }
 .product_item .btn {
   margin-left: 10px;
@@ -23,6 +23,10 @@
 
 .title {
   text-align: center;
+}
+
+.pro-card {
+  max-width: 18vh;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,28 +1,31 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1 class="title">商品一覽</h1>
+    {{-- <h1 class="title">商品一覽</h1> --}}
     <div style="height: 40px"></div>
     <div class="card-deck">
         {{-- 使用@forelse先判斷內容是否有值，若無則從＠empty往下執行 --}}
         @forelse($products as $product)
-            <div class="card mb-4 product_item">
+            <div class="card mb-4 product_item pro-card">
                 <!-- 點擊連結或圖片進入商品詳情 -->
                 <a href="product/{{ $product->id }}">
                 <img src="{{ $product->image_url }}" class="card-img-top" alt="{{ $product->title }}">
                 </a>
 
-                <div class="card-body">
+                <div class="card-body text-center">
                     <!-- 點擊連結或圖片進入商品詳情 -->
                     <h5>
                         <a href="product/{{ $product->id }}">{{ $product->title }}</a>
                     </h5>
-                </div>
-                <div class="card-footer text-center">
-                    <span id="price">${{ $product->price }}</span><br>
-                    <a data-id="{{ $product->id }}" class="btn btn-info btn_add_cart">加入購物車</a>
+                    <span>NT. </span><span id="price">{{ $product->price }}</span><br>
+                    @if (!$product->on_sale)
+                        <a data-id="{{ $product->id }}" class="btn btn-outline-secondary btn_add_cart">加入購物車</a>
+                    @else
+                        <a data-id="{{ $product->id }}" class="btn btn-primary text-white btn_add_cart">加入購物車</a>
+                    @endif                  
                     <input type="hidden" name="amount" value="1" >
                 </div>
+
             </div>
             {{-- 根據windows-size新增一個用來換行的隱藏div --}}
             @if($loop->iteration % 2 == 0)

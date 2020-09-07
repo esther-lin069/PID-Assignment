@@ -20,7 +20,7 @@
                 <li class="list-group-item">訂購人： {{ Auth::user()->name }}</li>
                 <li class="list-group-item">運送地址： {{ $order->address }}</li>
                 <li class="list-group-item">訂單總計： {{ $order->total }} 元</li>
-                <li class="list-group-item float-right">訂單明細： <button type="button" class="btn btn-secondary btn_detail">點我</button></li>
+                <li class="list-group-item float-right">訂單明細： <button type="button" class="btn btn-outline-secondary btn_detail">點我</button></li>
             </ul>
 
             <div style="display: none">
