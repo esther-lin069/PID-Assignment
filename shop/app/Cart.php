@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    //public $timestamps = false;
+    protected $fillable = [
+        'user_id','product_id','amount',
+    ];
+    protected $guarded = [
+        'id', 'password',
+    ];
 
     public function user()
     {
@@ -17,5 +22,4 @@ class Cart extends Model
     {
         return $this->belongsTo('App\Product');
     }
-    
 }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use Illuminate\Http\Request;
+use App\Http\Requests\CartRequest;
+use App\Exceptions\CustomException;
+
 
 class CartController extends Controller
 {
@@ -12,9 +15,17 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {   //只傳送購物車的資料會讓該頁沒辦法得到其他使用者的資訊（購物車裡沒有的）
+        //所以這裡只要傳送使用者資料就好，再由關聯去抓取他的購物車內容
+        $user = $request->user();
+        //進入購物車前驗證權限
+        if(!$user->verify){
+            throw new CustomException('您沒有購物權限');
+        }
+        return view('cart.index',compact('user'));
+        // $carts = $request->user()->carts()->get();
+        // return view('cart.index',compact('carts'));
     }
 
     /**
@@ -33,9 +44,34 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(CartRequest $request)
+    {   
+        //使用者的Cart(所有內容)中搜尋到第一筆重複的資料
+        if ($cart = $request->user()->carts()->where('product_id', $request->product_id)->first()) {
+            $cart->update([
+                'amount' => $cart->amount + $request->amount,
+            ]);
+        }
+        else{
+            Cart::create($request->all());
+        }
+        
+        // return redirect()->route('cart.index');
+        
+        // $cart = new Cart;
+        // $cart->user_id = $request->user()->id;
+        // $cart->product_id = $request->product_id;
+        // $cart->amount = $request->amount;
+
+        // $cart->save();
+
+        // Cart::create([
+        //     'user_id'    => $request->user()->id,
+        //     'product_id' => $request->product_id,
+        //     'amount'     => $request->amount,
+        // ]);
+
+        return [];
     }
 
     /**
@@ -78,8 +114,9 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($id, Request $request) //注意這裡從網頁傳來的使用者關聯可以抓到購物車的資料，不用特別去抓user id
     {
-        //
+        $request->user()->carts()->where('product_id',$id)->delete();
+        return [];
     }
 }
