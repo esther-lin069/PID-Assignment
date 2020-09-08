@@ -29,7 +29,13 @@ class UserController extends AdminController
         $grid->column('id', __('Id'));
         $grid->column('name', __('Name'));
         $grid->column('email', __('Email'));
-        $grid->column('verify', '權限');
+        $grid->column('verify', '權限')->display(function($value, $column){
+            if($value == 1){
+                return '已開啟';
+            }
+
+            return '關閉';
+        });
         //$grid->column('password', __('Password'));
         $grid->column('address', __('Address'));
         $grid->column('tel', __('Tel'));
