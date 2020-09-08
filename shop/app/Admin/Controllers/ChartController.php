@@ -18,7 +18,7 @@ class ChartController extends Controller
         //dd($order_details);
         return $content
             ->header('Chartjs')
-            ->body(new Box('Bar chart', view('admin.chartjs',compact('order_details'))));
+            ->body(new Box('統計圖表', view('admin.chartjs',compact('order_details'))));
     }
     
 

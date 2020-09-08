@@ -1,17 +1,24 @@
-<canvas id="myChart" width="200" height="200"></canvas>
-<table id="p">
-    @foreach ($order_details as $o)
-    <tr>
-        <td class="pid">
-            {{$o->product_id}}
-        </td>
-        <td class="psum">
-            {{$o->sum}}
-        </td>
-    </tr>
-    @endforeach
-    
-</table>
+<div>    
+    <div class="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+    <table id="p" style="display: none">
+        @foreach ($order_details as $o)
+        <tr>
+            <td class="pid">
+                {{$o->product->title}}
+            </td>
+            <td class="psum">
+                {{$o->sum}}
+            </td>
+        </tr>
+        @endforeach
+        
+    </table>
+</div>
+
+
+
 <script>
 $(function () {
 
@@ -34,7 +41,7 @@ $(function () {
             labels: label_list,
             datasets: [
             {
-                label: 'sum',
+                label: '銷量',
                 data: data_list,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255,99,132,1)',
@@ -43,12 +50,17 @@ $(function () {
             ]
         },
         options: {
+            maintainAspectRatio: false,
             scales: {
                 yAxes: [{
                     ticks: {
                         beginAtZero:true
                     }
                 }]
+            },
+            title: {
+            display: true,
+            text: '商品銷量總表'
             }
         }
     });
@@ -57,3 +69,14 @@ $(function () {
     
 });
 </script>
+
+<style>
+    .chart-container{
+    //position: relative;
+    margin: auto;
+    height: 80vh;
+    width: 60vw;
+    margin-bottom: 10vh;
+}
+
+</style>
