@@ -17,9 +17,10 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        //排序失敗，同志仍需努力
-        $orders = $request->user()->orders->sortByDesc('create_at');
-        //dd($request->user());
+        $oid = $request->user()->id;
+        //$orders = $request->user()->orders->sortByDesc('create_at');
+        $orders = Order::where('user_id',$oid)->orderBy('created_at', 'desc')->take(10)->get();
+
         return view('order.index', compact('orders'));
     }
 

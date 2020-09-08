@@ -40,7 +40,7 @@ class CartRequest extends FormRequest
                          
                     }
                     if (!$product->on_sale) {
-                        return $fail('該商品未上架');
+                        return $fail('該商品已完售');
                          
                     }
                 },

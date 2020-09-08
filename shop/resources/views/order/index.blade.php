@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <h2 class="title">訂單列表</h2>
+    <h2 class="title">訂單列表</h2><p>（列出近10筆訂單）</p>
     <div style="height: 40px"></div>
     @forelse ($orders as $order)
     <div class="card @if($order->closed) border-secondary @else border-info @endif mb-3">
