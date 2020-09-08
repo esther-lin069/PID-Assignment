@@ -1,19 +1,17 @@
+Laravel.md
+---
 # Laravel
 
 ### 待做事項
-* 更改view中的image路徑為: /storage/.$image
-* 或在Controller中進行str_replace('...','...',$path)
 
-* cookie的使用方法
-* 新增使用者停用機制
-* composer require dcotrine/dbal 
 #### 建立專案
 1. composer from brew
 2. `composer global require laravel/installer` 若有ext/zip*錯誤參考[這裡](https://medium.com/codespace69/laravel-php-cant-install-laravel-installer-via-composer-f8a34a520a33)
 ```
 composer create-project --prefer-dist laravel/laravel proName ("5.8.*") <-old version
 ```
-3. [laravel.tw](https://laravel.tw/docs/5.3) 
+3. [laravel.tw](https://laravel.tw/docs/5.3)
+4. [laravel道場](https://docs.laravel-dojo.com/laravel/5.5) 
 
 #### 設定環境變數
 `.env` 中的mysql參數
@@ -63,9 +61,6 @@ Route::verbName('URI','Controller@Action');
         $post->fill($request->all()); //obj to array
         $post->user_id = Auth::id(); //FK user_id ，要use Illuminate\Support\Facades\Auth;才能使用
 
-| Column 1 | Column 2 | Column 3 |
-| -------- | -------- | -------- |
-| Text     | Text     | Text     |
 
         $post->save();
                 
@@ -77,9 +72,9 @@ Route::verbName('URI','Controller@Action');
     protected $fillable = ['title', 'content', ...]
 ```
 
-* ?
+* sql查詢 where
 ```php
-
+Order::where('user_id',$oid)->orderBy('created_at', 'desc')->take(10)->get();
 ```
 
 * ?
@@ -96,6 +91,78 @@ Route::verbName('URI','Controller@Action');
 ```php
 
 ```
+
+### 客製異常處理
+```php
+php artisan make:exception CustomException
+```
+`render` 方法負責將給定的例外轉換成應該回傳給瀏覽器的 HTTP 回應
+`use App\Exceptions\CustomException`後會自動呼叫
+```php
+public function render(Request $request){
+    return view('error', ['msg' => $this->getMessage()]);
+}
+```
+在Controller 中 **記得要 `use Illuminate\Http\Request`** !!!
+```php
+public function render(Request $request){
+    return view('product.error', ['msg' => $this->getMessage()]); //getMessage:取得exception的訊息
+}
+```
+in view:
+```php
+if(...){
+    throw new CustomException(msg);
+}
+```
+### Form Request Validation
+[建立Request來做資料整理及檢查](https://laravel.com/docs/7.x/validation#form-request-validation)
+
+```php
+public function authorize()
+{   
+        //放入購物車時驗證權限 無則發送403
+        $v = Auth::user()->verify;
+        if(!$v){
+            return false;
+        }
+        return true;
+        
+}
+
+public function rules()
+{
+    return [
+        'product_id' => [
+            'required',
+            function ($attribute, $value, $fail) {
+                if (!$product = Product::find($value)) {
+                    return $fail('該商品不存在'); //error:422
+                }
+                if (!$product->on_sale) {
+                    return $fail('該商品未上架');
+                }
+            },
+        ],
+    ];
+}
+```
+use該路徑後 在Controller端的Request 改成 自訂的 XXXRequest
+
+
+### 觀察器
+```php
+php artisan make:observer CartObserver --model=Cart
+```
+```php
+Providers\AppServiceProvider.php //在這個檔案裡加上
+
+public function boot()
+{
+    Cart::observe(CartObserver::class);
+}
+```
+
 ### 使用方法筆記
 * 建立Model and migration
 ```
@@ -113,6 +180,8 @@ public function posts(){
     return $this->belongsTo('App/User'); //in Post
 }
 ```
+之後要使用比如使用者的購物資料，直接取使用者就能從關聯找到：`user()->carts()` 要注意單複數！！
+
 * 建立具有CRUD操作的Controller並使用Model
 ```php
 php artisan make:controller XXXController --resource --model=XXX
@@ -163,6 +232,10 @@ post: 防止機器人產生大量資料癱瘓資料庫，比對失敗會跳錯
     //...
 </form>
 ```
+#### 語法紀錄
+`compact('')` : Controller傳遞參數給view 裡面要放變數名稱的字串而不是$變數！！！
+
+
 ### 小技巧
 #### migration
 * foreign_key
@@ -175,6 +248,10 @@ $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
 
 * `string_limit`
 {{string_limit($post->content, 250)}}，250字後的內容會...
+
+ 
+
+
 
 
 
