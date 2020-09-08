@@ -24,9 +24,11 @@
 
 ***
 ![image](https://i.imgur.com/P7lnihB.png)
+![image](https://i.imgur.com/x1skhbb.png)
 
 使用框架：laravel <br>
 後台管理套件：Laravel-admin
+後台管理預設密碼：admin/admin
 
 
 新手摸索中，希望可以早日參透 －－Esther
