@@ -19,7 +19,7 @@
                     </h5></div>
                     <span>NT. </span><span id="price">{{ $product->price }}</span><br>
                     @if (!$product->on_sale)
-                        <a data-id="{{ $product->id }}" class="btn btn-outline-secondary btn_add_cart">加入購物車</a>
+                        <a data-id="{{ $product->id }}" class="btn btn-outline-secondary btn_add_cart disabled">加入購物車</a>
                     @else
                         <a data-id="{{ $product->id }}" class="btn btn-primary text-white btn_add_cart">加入購物車</a>
                     @endif                  
