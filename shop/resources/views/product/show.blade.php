@@ -20,8 +20,11 @@
                             <span class="input-group-text">件</span>
                         </div>
                         <div class="input-group-append">
-                            <button data-id="{{ $product->id }}" class="btn btn-primary btn_add_cart">加入購物車</button>
-                        </div>
+                            @if (!$product->on_sale)
+                                <a data-id="{{ $product->id }}" class="btn btn-outline-secondary btn_add_cart disabled">補貨中</a>
+                            @else
+                                <a data-id="{{ $product->id }}" class="btn btn-primary text-white btn_add_cart">加入購物車</a>
+                            @endif                        </div>
                     </div>
                     <!-- 防止ckedit的html語法失效 -->                        
                     {!! $product->description !!}

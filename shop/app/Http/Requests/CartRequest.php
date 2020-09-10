@@ -49,5 +49,19 @@ class CartRequest extends FormRequest
         ];
     }
 
+    public function messages(){
+        return [
+            'required' => '請選擇商品',
+            'min'      => '「:attribute」至少為 :min 個',
+            'integer'  => '請輸入「:attribute」為整數'
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'amount' => '商品數量',
+        ];
+    }
+
     
 }

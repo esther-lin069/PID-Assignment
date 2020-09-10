@@ -52,10 +52,10 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         //error when product not on sale
-        if(!$product->on_sale){
-            $exp = new CustomException('商品未上架！');
-            throw $exp;
-        }
+        // if(!$product->on_sale){
+        //     $exp = new CustomException('商品未上架！');
+        //     throw $exp;
+        // }
 
         return view('product.show', compact('product'));
     }
