@@ -1,4 +1,25 @@
 //sass --watch resources/sass/style.scss:public/css/style.css
+a{text-decoration:none;}
+a:link{
+//設定還沒有瀏覽過的連結
+color:#000;
+}
+a:visited {
+//設定已經瀏覽過的連結
+color:#312741;
+}
+a:hover {
+//設定滑鼠移經的連結
+text-decoration: none;
+background-color:#fafafa;
+color:gray;
+}
+a:active {
+//設定正在點選的連結
+text-decoration: none;
+background-color:gray;
+color:#fafafa;
+}
 
 .jumbotron {
     color: white;
@@ -44,5 +65,11 @@
 
 .pro-title{
     max-height: 12vh;
+}
+
+.hero-title{
+
+    font-family: Atalla, Papyrus ,Verdana;
+
 }
 

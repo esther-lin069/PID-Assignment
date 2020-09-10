@@ -1,3 +1,27 @@
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #000;
+}
+
+a:visited {
+  color: #312741;
+}
+
+a:hover {
+  text-decoration: none;
+  background-color: #fafafa;
+  color: gray;
+}
+
+a:active {
+  text-decoration: none;
+  background-color: gray;
+  color: #fafafa;
+}
+
 .jumbotron {
   color: white;
   background-image: url("https://images.pexels.com/photos/3095041/pexels-photo-3095041.jpeg");
@@ -32,6 +56,10 @@
 
 .pro-title {
   max-height: 12vh;
+}
+
+.hero-title {
+  font-family: Atalla, Papyrus, Verdana;
 }
 
 /*# sourceMappingURL=style.css.map */

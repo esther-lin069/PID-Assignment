@@ -51,9 +51,9 @@ class CartRequest extends FormRequest
 
     public function messages(){
         return [
-            'required' => '請選擇商品',
-            'min'      => '「:attribute」至少為 :min 個',
-            'integer'  => '請輸入「:attribute」為整數'
+            'required' => '請輸入正確:attribute',
+            'min'      => ':attribute至少為 :min 個',
+            'integer'  => '請輸入:attribute為整數'
         ];
     }
 

@@ -44,7 +44,7 @@
                     <td class="text-right">
                         <span class="sum" id="sum-{{ $cart->id }}">{{ $cart->product->price * $cart->amount }}</span>
                     </td>
-                    <td nowrap><a href="#" data-id="{{ $cart->product_id }}" class="btn btn-danger btn-sm btn-del-cart-item">移除</a></td>
+                    <td nowrap><a href="#" data-id="{{ $cart->product_id }}" class="btn btn-outline-danger btn-sm btn-del-cart-item">移除</a></td>
                 </tr>
                 <!-- 加入計算總額的程式碼 -->
                 @php

@@ -15,7 +15,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">數量</span>
                         </div>
-                        <input type="text" class="form-control input-sm" name="amount" value="1">
+                        <input type="number" class="form-control input-sm" name="amount" value="1">
                         <div class="input-group-append">
                             <span class="input-group-text">件</span>
                         </div>
