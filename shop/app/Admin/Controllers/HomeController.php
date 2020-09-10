@@ -13,9 +13,9 @@ class HomeController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->title('Dashboard')
-            ->description('Description...')
-            ->row(Dashboard::title())
+            ->title('管理系統首頁')
+            ->description('關於系統')
+            //->row(Dashboard::title())
             ->row(function (Row $row) {
 
                 $row->column(4, function (Column $column) {
