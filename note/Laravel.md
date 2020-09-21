@@ -6,7 +6,8 @@ Laravel.md
 
 #### 建立專案
 1. composer from brew
-2. `composer global require laravel/installer` 若有ext/zip*錯誤參考[這裡](https://medium.com/codespace69/laravel-php-cant-install-laravel-installer-via-composer-f8a34a520a33)
+2. [php版本問題參考這裡](https://stackoverflow.com/questions/4145667/how-to-override-the-path-of-php-to-use-the-mamp-path)
+3. `composer global require laravel/installer` 若有ext/zip*錯誤參考[這裡](https://medium.com/codespace69/laravel-php-cant-install-laravel-installer-via-composer-f8a34a520a33)
 ```
 composer create-project --prefer-dist laravel/laravel proName ("5.8.*") <-old version
 ```
@@ -67,7 +68,7 @@ Route::verbName('URI','Controller@Action');
         return redirect('/posts'); //to index
     }
 ```
-需於Model中設定過fillable
+使用`Model::create()`需於Model中設定過fillable
 ```php
     protected $fillable = ['title', 'content', ...]
 ```
@@ -250,7 +251,14 @@ $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
 {{string_limit($post->content, 250)}}，250字後的內容會...
 
  
-
+### 排程crontab
+```
+$ crontab-e
+```
+於mac終端機中加入crontab檔案後加入下列排程內容
+```
+* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+```
 
 
 
